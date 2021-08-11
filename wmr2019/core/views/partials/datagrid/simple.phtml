@@ -1,0 +1,29 @@
+<?php
+/**
+ * Renderiza una tabla en base a un modelo.
+ *
+ * @author Andres Hal
+ * 
+ * @param array $Modelo modelo con los resultados a mostrar
+ * @param array $Campos array con los que se quieren mostrar de la tabla
+ * @return partial
+ */
+?>
+ 
+	<div id="datagrid">
+		<table  border="1px" class="simple" align="center">
+		<thead><tr>
+			<?php foreach( $Campos  as $titulo => $valor): ?>
+				<th> <?php echo $titulo ?></th>
+			<?php endforeach; ?>
+		</tr></thead>
+                <tbody>
+			<?php foreach( $Model as $model): 
+				 echo tr_color_class( 'tr_primary', 'tr_secondary' );
+				 foreach($Campos as  $campos): ?>
+					<td><?php echo $model->$campos ?></td>
+				<?php endforeach; ?>
+				</tr>
+			<?php endforeach; ?>
+		</tbody></table>
+	</div>

@@ -1,0 +1,31 @@
+ 
+			         
+ 
+	<nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand">WMR-Notas</a>
+          </div>
+           
+           
+             <?php
+				
+					echo '<ul class="nav navbar-nav navbar-right">';										
+						if(Auth::is_valid()){
+						echo '<li>'.Html::link('sistema/index','Sistema').'</li>';
+						echo '<li>'.Html::link('sistema/salir','Cerrar').'</li>';						
+						}
+						else
+						{		
+						echo '<li>'.Html::link('principal/login','Home').'</li>';
+						}
+					echo "</ul>";
+				
+			?>   
+
+
+
+           
+        
+        </div>
+    </nav>

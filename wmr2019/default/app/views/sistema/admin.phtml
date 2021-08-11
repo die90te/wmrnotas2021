@@ -1,0 +1,199 @@
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> 
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+  <script>
+  $( function() {
+    $( "#accordion" ).accordion({
+      heightStyle: "content"
+    });
+  } );
+  </script>
+
+  <script>
+  $('#balumnos').click(function(){      
+
+        $( ".selector" ).accordion( "destroy" ); 
+
+  });
+  </script>
+  
+ <script>
+ function ver() {
+    document.getElementById("fact").style.display = "block";
+}
+</script>
+
+
+
+  <script>
+  $( function() {
+    $( "#tabs" ).tabs();
+  } );
+  </script>
+
+<div>
+     
+  
+    
+     <h2>ADMINISTRACION DEL SISTEMA</h2><?php //echo "ID: ".$id; ?> <br>
+<div id="accordion" style="text-align:left; width: 100%;">
+
+
+  <h3>Datos</h3>
+  <div>
+    <p>
+    <div id="tabs">
+         
+          <ul>
+           
+            <li><a href="#tabs-1">Alumnos</a></li>
+
+            
+            <li id="verasig">
+            <a href="#tabs-2" onclick="vera2();">                
+                 
+            Asignaturas                 
+            </a>
+            </li>
+          
+            <!-- -->
+             
+            <li id="verclases">
+            <a href="#tabs-3" onclick="vera3();">                
+                 
+            Clases
+            </a>
+            </li>
+           
+            
+        <!--<li id="verclases"><a href="#tabs-3">Clases<input type="hidden" name="pg3" id="pg3" value="3"></a></li>-->
+            <li id="vercursos"><a href="#tabs-4">Cursos<input type="hidden" name="pg4" id="pg4" value="4"></a></li>
+            <li id="verusuarios"><a href="#tabs-5">Usuarios<input type="hidden" name="pg5" id="pg5" value="5"></a></li>
+          
+          </ul>
+       
+          <div id="tabs-1">
+                Buscar Alumno
+                <form name="falumnos" id="falumnos" autocomplete="off">
+                <input type="text" id="alumnos_rut" name="alumnos_rut"  required size="7"> - <input type="text" id="alumnos_dvrut" name="alumnos_dvrut" size="2" maxlength="1"  required>
+                <input type="button" value="Buscar" id="balumnos">
+                </form>
+                <p><div id="rfalumnos"></div></p>
+          </div>
+
+          <div id="tabs-2">
+            <p>
+              <div>
+               
+                <?php 
+                $posts = Load::model('asignaturas')->find_all_by_sql
+                ("SELECT * from asignaturas WHERE asignaturas_nombre <> 'ADMINISTRACION SISTEMA' ORDER BY orden ASC");
+  
+                  echo "<br>";
+                  foreach ($posts as $posts)
+                  {
+                  
+                    $asignatura = $posts->asignaturas_nombre;
+                    $orden = $posts->orden;
+                  echo "<form autocomplete='off' id='factasig' action='http://localhost/wmr/default/public/asignaturas.php' method='post'>";
+
+                    echo Form::text('asignatura',"onclick= 'verasig();' style='height: 20px; border: none;' maxlength='20' required ",$asignatura);
+
+                    
+                    echo "<button id='baa' name='act' onclick='ver();' title='Actualizar Registro'style='background: none;'><img width='20' height='20' src='https://cdn1.iconfinder.com/data/icons/basic-ui-elements-color-round/3/52-512.png'></button>";
+                    echo "<button title='Eliminar' name='eli'><img width='20' height='20' src='http://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Close-icon.png'></button>";
+                                     echo "</form>";
+ 
+
+                    echo "<br>";
+                  }
+                ?>
+                <p><button>Agregar Nueva Asignatura</button></p>
+              </div>
+            </p>            
+          </div>
+
+          <div id="tabs-3">
+            <p>
+              <div>
+                  clases
+                  
+              </div>
+            </p>
+          </div>
+          <div id="tabs-4">
+            <p>CURSOS</p>
+          </div>
+          <div id="tabs-5">
+            <p>USUARIOS</p>
+          </div>
+        </div> 
+    </p>
+  </div>
+
+  <h3>Notas</h3>
+  <div>
+    <p>
+    <form name="notas3" id="notasadmin">
+        <select name="curso" id="curso" required>
+          <option value="">CURSO</option>
+          <option value="1">1°</option>
+          <option value="2">2°</option>
+          <option value="3">3°</option>
+          <option value="4">4°</option>
+          <option value="5">5°</option>
+          <option value="6">6°</option>
+          <option value="7">7°</option>
+          <option value="8">8°</option>
+        </select>
+        <select name="letra" id="letra" required>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <select name="asignatura" id="asignatura" required>
+          <option value="">ASIGNATURA</option>
+            <option value="ARTES VISUALES">ARTES VISUALES</option>
+            <option value="CS. NATURALES">CS. NATURALES</option>
+            <option value="ED. ARTISTICA">ED. ARTISTICA</option>
+            <option value="ED. FISICA">ED. FISICA</option>
+            <option value="HISTORIA">HISTORIA</option>
+            <option value="INGLES">INGLES</option>
+            <option value="LENG. Y COMUNIC.">LENG. Y COMUNIC.</option>
+            <option value="LENGUA Y LITERATURA">LENGUA Y LITERATURA</option>
+            <option value="MATEMATICA">MATEMATICA</option>
+            <option value="MUSICA">MUSICA</option>
+            <option value="TECNOLOGIA">TECNOLOGIA</option>
+        </select>
+        <select name="semestre" id="semestre" required>
+          <option value="">ELIGA SEMESTRE</option>
+          <option value="valor">1° SEMESTRE</option>     
+          <option value="valor2">2° SEMESTRE</option>   
+        </select>
+        <input type="button" value="ver notas" id="notas3">
+        <button onclick="ocultarAD();">imprimir</button>
+    </form> 
+    <p><div id="respnotas3"></div></p></p>
+  </div>
+
+  
+
+  
+   
+</div>
+
+      
+
+    
+ 
+</div>
+
+ 
+
+
+ 
+
+  
+ 

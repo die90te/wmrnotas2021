@@ -1,0 +1,25 @@
+	<!-- <div id='logo-kumbia'><?php echo Html::img('default/kumbia.png','KumbiaPHP logo') ?></div> -->
+
+<h1>Probando Autocomplete</h1>
+<?php View::content() ?>
+ 
+<?php echo Form::text('autocomplete') ?>
+ 
+<script type="text/javascript" >
+	$(document).ready(function(){
+		$('input#autocomplete').autocomplete({
+ 
+			minLength : 2 , //le indicamos que busque a partir de haber escrito dos o mas caracteres en el input
+ 
+			source : function( request , response ){
+ 
+				var url = "<?php echo PUBLIC_PATH ?>index/autocomplete";   //url donde buscará los estados
+ 
+				$.post(url, { 'busqueda' : request.term }, response, 'json');
+ 
+				//busqueda es la varible que mandaremos por post con el contenido del input
+			}
+		});
+	});
+</script>
+

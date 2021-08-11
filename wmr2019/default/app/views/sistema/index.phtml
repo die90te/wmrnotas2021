@@ -1,0 +1,53 @@
+<div class="content_">
+	<?php //echo View::content(); ?>
+
+				<?php 
+				 	
+				 	$tipo= $usuarios->usuarios_nombre=Auth::get('usuarios_nombre'); 
+					
+					$asig= $usuarios->asignaturas_nombre=Auth::get('asignaturas_nombre');
+					
+				?>
+
+				<?php
+				if($asig=='ADMINISTRACION SISTEMA')
+				{
+					Router::redirect("sistema/admin");
+				}
+				else
+				{
+					echo "<h2>";
+					echo 'Nombre: '.$tipo.'<br>'; 
+					echo 'Asignatura: '.$asig.'<br>';
+					echo "</h2>".'<br>';
+
+					echo "<div style='width: 90%; text-align: center;display: inline-block;'>";
+					echo Registro::datagrid($modelo, $campos, $opciones);
+					echo "</div>";
+
+					$posts = Load::model('cursos')->find_all_by_sql("select * from cursos where usuarios_nombre = '$tipo' ");
+	
+	 			echo "<br>";
+	 			foreach ($posts as $posts)
+				{
+				
+					$micurso = $posts->cursos_grado;
+					$letra = $posts->cursos_letra;
+					echo '<h3>'."Mi Curso: ".$micurso.'° Básico '.$letra.'</h3>';
+				
+				echo '<a class="myButton" href="./informe">INFORME DE NOTAS <br> 1° SEMESTRE</a>';   
+				
+				echo '<a class="myButton" href="./informe2sem">INFORME DE NOTAS <br>2° SEMESTRE</h3></a>';   
+				 
+				echo '<a class="myButton" href="./informefinal">INFORME FINAL <br>DE NOTAS</a>';
+
+				}
+
+				}
+				?>
+	
+				
+ 				
+	 		
+
+</div>

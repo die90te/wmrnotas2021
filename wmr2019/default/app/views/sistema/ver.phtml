@@ -1,0 +1,58 @@
+ 
+<div class="content">
+	<?php echo View::content(); ?>
+
+				<?php 
+				 	echo "<h2>";
+				 	$tipo= $usuarios->usuarios_nombre=Auth::get('usuarios_nombre'); 
+					echo 'Nombre: '.$tipo.'<br>'; 
+					$asig= $usuarios->asignaturas_nombre=Auth::get('asignaturas_nombre');
+					echo 'Asignatura: '.$asig.'<br>';
+					echo "</h2>";
+				?>
+	
+ 
+
+ 
+ <?php
+ $posts = Load::model('clases')->find_all_by_sql("select * from clases where id = '$id' ");
+	
+	 		
+	 			foreach ($posts as $posts)
+				{
+				
+					$curso = $posts->cursos_grado;
+					$letra = $posts->cursos_letra;
+					$profe = $posts->usuarios_nombre;
+					$asignatura = $posts->asignaturas_nombre;
+
+					echo "Curso: ".$curso.'° Básico '.$letra.' - '.$asignatura;
+				 	 
+				}
+					
+ ?>
+ <br>
+<form name="notasp" id="notasp" method="post">
+	<input type="hidden" name="curso" value="<?php echo $curso; ?>">
+	<input type="hidden" name="letra" value="<?php echo $letra; ?>">
+	<input type="hidden" name="asignatura" value="<?php echo $asignatura; ?>">
+	<select name="semestre" id="semestre" required>
+	  <option value="">ELIGA SEMESTRE</option>
+	  	<option value="s1">1° semestre</option>
+		<option value="s2">2° semestre</option>
+	</select>
+	<input type="button" value="ver notas" id="bnotasp">
+</form>
+
+
+	
+		 
+		<p><div id="respnotasp"></div></p>
+	 
+
+<div class="btnImprimir" id="hide">
+
+		<input class="btnImprimir" type="button" onclick="impri();" value="Imprimir Informe" id="imprimir" />
+	</div>
+
+</div>

@@ -1,0 +1,26 @@
+﻿<div class="as">
+
+      <div class="row">
+        <div class="col-md-4">
+          <!-- Start Sign In Form -->
+          <?php echo Form::open("principal/login","post","class='fh5co-form animate-box' data-animate-effect='fadeInLeft'"); ?>
+            <h2>Ingreso</h2>
+            <div class="form-group">
+              <label for="username" class="sr-only">Usuario</label>
+              <input type="text" class="form-control" id="usuarios_rut" name="usuarios_rut" placeholder="Usuario" autocomplete="off">
+              <?php //echo Form::text("usuarios_rut"); ?>
+            </div>
+            <div class="form-group">
+              <label for="password" class="sr-only">Contraseña</label>
+              <input type="password" class="form-control" id="usuarios_pass" name="usuarios_pass" placeholder="Contraseña" autocomplete="off">
+              <?php //echo Form::pass("usuarios_pass"); ?>
+            </div>
+            <div class="form-group">
+              <input type="submit" value="Iniciar" class="btn btn-primary">
+            </div>
+          </form>
+          <!-- END Sign In Form -->
+        </div>
+      </div>
+</div>
+

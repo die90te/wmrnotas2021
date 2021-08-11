@@ -1,0 +1,20 @@
+
+ 
+	<div id="datagrid">
+		<table  border="1px" width="100%"  class="paginado">
+		<thead><tr>
+			<?php foreach( $Campos  as $titulo => $valor): ?>
+				<th> <?php echo $titulo ?></th>
+			<?php endforeach; ?>
+		</tr></thead>
+                <tbody>
+		       <? foreach( $Model->items as $model):
+				echo tr_color_class( 'tr_primary', 'tr_secondary' );
+					foreach($Campos as  $campos): ?>
+					    <td><?php echo $model->$campos ?></td>
+				       <?php endforeach; ?>
+				</tr>
+			<?php endforeach; ?>
+		</tbody></table>
+        	<?php	View::partial('paginators/'. $Paginator, false, array('page' => $Model ,'url' => $Url)); ?>
+	</div>

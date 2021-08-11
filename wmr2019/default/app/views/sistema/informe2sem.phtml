@@ -1,0 +1,288 @@
+<?php header( 'Content-type: text/html; charset=UTF-8' );?>
+
+
+
+<div class="content">
+
+	<?php echo View::content(); ?>
+
+
+
+<div id="dvContents" style="border: 1px solid; text-align: center; height: 13in; width: 9in;">
+ 
+
+
+   <table border="0" width="90%" align="center">
+        <tr>
+          <td align="left">
+             <div id="l"><img  src="http://wmr.skn1.com/default/public/img/imodaemwmr.png" width="80%"  ></div>
+          </td>
+          <td  align="right">
+             <div id="r"><img  src="http://wmr.skn1.com/default/public/img/logo.png" width="25%"  ></div>
+          </td>
+        </tr>
+      </table>
+
+<center>
+
+				<div style="width: 100%; font-size: 18px;"><strong>INFORME DE NOTAS PARCIALES</strong>
+        <br><span style="font-size: 12px;">SEGUNDO SEMESTRE</span>
+        </div>
+
+
+      <p>
+         <?php foreach ($listAlumnos->items as $item) : ?>
+      	<?php $nombres = $item->alumnos_nombre; ?>
+         <?php echo "Nombre Alumno: "?>
+
+        <strong><?= $item->alumnos_nombre ?></strong><br>
+
+        <?php echo "Rut: "?>
+
+        <strong><?= $item->alumnos_rut ?></strong> - <strong><?= $item->alumnos_dvrut ?></strong>
+
+        <form method="post" id="formularios2">
+        <input type="hidden" name="s2" id="s2" size="50" value='<?= $item->alumnos_nombre ?>' />  
+        </form> 
+<!-- ///////***************  formulario de envio **********////////////////////
+        <form method="post" id="formulariofinal">
+        <input type="hidden" name="ff" id="ff" size="50" value='<?= $item->alumnos_nombre ?>' />  
+        </form> -->
+<!-- ///////***************  formulario de envio **********////////////////////-->
+       <?php endforeach ?>
+       </p>
+     
+
+    <?php 
+
+            $tipo= $usuarios->usuarios_nombre=Auth::get('usuarios_nombre');
+
+             echo "Profesor(a) Jefe: ".'<strong>'.$tipo.'</strong><br>';  
+
+            $posts = Load::model('cursos')->find_all_by_sql
+
+            ("select * from cursos where usuarios_nombre = '$tipo' ");
+
+                foreach ($posts as $posts)
+
+                {               
+
+                    $curso = $posts->cursos_grado;
+
+                    $letra = $posts->cursos_letra;
+
+                    echo "Curso: ".'<strong>'.$curso.'° Básico '.$letra.'</strong>';                  
+
+                }
+
+    ?>
+
+        <center>
+            <div style="width: 100%; text-align: center;">
+
+                <table width="100%" align="center" border="0" >
+
+                <tr>
+                <td width="70%" style="padding-left: 6%;">
+
+                <span id="resultado2" style='width: 100%;'></span>
+
+                </td>
+                <!--<td width="30%">
+                  <span id="resultadofinal" style='width: 100%;'></span>
+                </td>-->
+                </tr>
+
+                </table>
+
+            </div>
+        </center>
+
+        <?php ///////////////////RESULTADO//////////////////////// ?>
+<!-- 
+        <center>
+            <div>
+
+                <table width="100%" align="center" border="0" style="text-align: center;" >
+
+                <tr><td>
+
+                <span id="resultadofinal" style='width: 100%; text-align: center;'></span>
+
+                </td></tr>
+
+                </table>
+
+            </div>
+        </center>
+        finales -->
+<p><br></p>
+     
+
+   <?php     
+        $posts = Load::model('datosalumnos')->find_all_by_sql("select * from datosalumnos where alumnos_nombre= '$nombres' "); 
+            foreach ($posts as $posts)
+            {
+              $nombres = $posts->alumnos_nombre;
+              $ob = $posts->observaciones2s;
+             }
+        ?>
+        
+     
+<form method="post" id="formularioda">
+    <div id="obs"> 
+     <table border="0" width="90%" align="center" style="text-align: center;">
+        <tr style="text-align: center;">
+          <td width="30%">
+          <strong>Religión: <input type="text" value="<?= $posts->religion2s ?>" 
+          name="religion" id="religion" size="1" style="text-transform: uppercase;" maxlength='2'></strong>
+          </td> 
+          <td width="40%">
+          <strong>Orientación: <input type="text" value="<?= $posts->orientacion2s ?>" 
+          name="orientacion" id="orientacion" size="1" style="text-transform: uppercase;" maxlength='2'></strong>
+          </td> 
+          <td width="30%">
+          <strong>Promedio Asistencia: <input type="text" id="asistencia" value="<?= $posts->asistencia2s ?>" name="asistencia" size="1">%</strong>
+          </td> 
+        </tr>
+        <tr style="text-align: center;">
+          <td colspan="3">
+          <br>
+            <textarea rows="5" cols="50" name="comment" id="comment" placeholder="Comente observaciones del alumno" 
+            form="formularioda" style="width: 100%; text-transform: uppercase;"><?php echo utf8_decode($ob); ?></textarea>  
+          </td>
+        </tr>   
+          <input type="hidden" name="alumno" value="<?= $posts->alumnos_nombre ?>" >
+         <tr style="text-align: center;">
+            <td colspan="3">
+            <img src="http://www.wmr.skn1.com/default/public/img/pj.png" width="30%">
+            <img src="http://www.wmr.skn1.com/default/public/img/apo.png" width="30%">
+           </td>
+         </tr>
+     </table>   
+    </div>
+  
+      <br>
+      <div style="border: solid 1px #DFDCCD; width: 90%"></div>
+        <!-- informe de personalidad-->
+        <DIV style="width: 80%; font-size:12px;">
+          <p style="font-weight: bold;">INFORME DE DESARROLLO PERSONAL Y SOCIAL<br>
+        SIEMPRE (S)  /CASI SIEMPRE  (CS) / A VECES (AV) / NUNCA (N)</p>
+
+       
+        <table border="0" width="100%" align="center" style="text-align: center; border: solid 1px; ">
+        <tr>
+        <td colspan="2" style="text-align: center; border: solid 1px; background-color: #F58F79; ">FORMACIÓN ÉTICA</td>
+        </tr>
+        <tr><td>Demuestra respeto por sí mismo y por los demás.</td><td>
+        <input type="text" name="fe1s2" id="fe1s2" value="<?= $posts->fe1s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+        <tr><td>Respeta los horarios de la jornada escolar.</td><td>
+        <input type="text" name="fe2s2" id="fe2s2" value="<?= $posts->fe2s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+        <tr><td>Respeta el uso de uniforme institucional, manteniendo una buena presentación personal.</td><td>
+        <input type="text" name="fe3s2" id="fe3s2" value="<?= $posts->fe3s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+         
+        <tr>
+        <td colspan="2" style="text-align: center; border: solid 1px; background-color: #A8F579;">CRECIMIENTO Y AUTOAFIRMACIÓN PERSONAL</td>
+        </tr>
+        <tr><td>Mantiene actitudes  positivas y  participativas con las actividades del establecimiento.</td><td>
+        <input type="text" name="cap1s2" id="cap1s2" value="<?= $posts->cap1s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+        <tr><td>Es solidario procurando siempre ir en ayuda de los demás.</td><td>
+        <input type="text" name="cap2s2" id="cap2s2" value="<?= $posts->cap2s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+        <tr><td>Demuestra esfuerzo por cumplir y lograr sus metas escolares.</td><td>
+        <input type="text" name="cap3s2" id="cap3s2" value="<?= $posts->cap3s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+         
+        <tr>
+        <td colspan="2" style="text-align: center; border: solid 1px; background-color: #1AA5E7;">RELACIÓN CON EL ENTORNO</td>
+        </tr>
+        <tr><td>Mantiene su sala y puesto de trabajo limpio y ordenado.  </td><td>
+        <input type="text" name="rce1s2" id="rce1s2" value="<?= $posts->rce1s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+        <tr><td>Protege su entorno natural y sus recursos</td><td>
+        <input type="text" name="rce2s2" id="rce2s2" value="<?= $posts->rce2s2 ?>" maxlength='2' style="text-align: center;text-transform: uppercase;"></td></tr>
+         
+
+        </table>
+        </DIV>
+        <!-- informe de personalidad-->
+        <div style="font-size:12px;"><strong><br><?php echo "Osorno, ".date('d-m-Y')?></strong></div>
+</form>
+
+</center>
+
+</div>
+
+<br>
+
+
+
+
+
+<div class="btnImprimir" id="hide">
+
+<div id="resp"></div>
+<div id="respda"></div>
+
+
+
+<div id="respp"></div><br>
+<!--
+<input class="btnImprimir" type="button" onclick="" value="Guardar Informacion" id="proms" />
+<input class="btnImprimir" type="button" onclick="" value="Imprimir Informe" id="imprimir" />
+-->
+
+<button id="proms" style="width: 40%;" onclick="impri();"><img height="40%" width="40%" src="http://www.wmr.skn1.com/default/public/img/print.png"></button>
+<br>
+<br>
+
+<div id="dbtn">
+      <ul id='button'>
+        <li><a>Listado de Alumnos</a></li>         
+      </ul>            
+</div>
+
+
+    
+    <div style="border: solid 1px;">
+        <p>
+        <?php if($listAlumnos->prev) echo Html::linkAction("informe2sem/$listAlumnos->prev/", 
+        '<button style="width: 20%"><img height="20%" width="20%" src="http://www.wmr.skn1.com/default/public/img/izq.png"></button>'); ?> 
+             
+        <?php if($listAlumnos->next) echo Html::linkAction("informe2sem/$listAlumnos->next/", 
+        '<button style="width: 20%;"><img height="20%" width="20%" src="http://www.wmr.skn1.com/default/public/img/der.png"></button>'); ?>
+        </p>
+        <?php
+        $posts = Load::model('alumnos')->find_all_by_sql("select * from alumnos where cursos_grado = '$curso' ORDER BY alumnos_nombre ASC ");
+            echo "<table border='0' style='border: none;' align='center' width='100%'>";
+            echo "<tr style='border: ridge 1px; font-weight: bold'>";
+            echo "<td style='border: ridge 1px;'>N°</td>";
+            echo "<td style='border: ridge 1px;'>ALUMNOS</td>";
+            echo "<td style='border: ridge 1px;'>OPCIÓN</td>";
+            echo "</tr>";
+            $n=0;
+            foreach ($posts as $posts)
+            {
+                $n++;
+            //print $posts->id;
+            //echo " - ";
+                $nombres = $posts->alumnos_nombre;
+                $curso = $posts->cursos_grado;
+                $letra = $posts->cursos_letra;
+            echo "<tr style='border: ridge 1px;'>";
+
+            echo '<td style="border: ridge 1px;">'.$n.'</td>';
+            echo "<td style='border: ridge 1px;'>".$nombres."</td>";
+           //echo '<td>'.$curso.'</td>';
+            echo '<td style="border: ridge 1px;">'.Html::linkAction("informe2sem/$n", 'ver').'</td>';
+           //echo Html::linkAction("del_jueves/$posts->id", 'Borrar');
+            echo "</tr>";
+            }
+            echo "</table>";
+        ?>
+    </div>
+
+  <p><br></p>    
+
+
+
+
+    </div>
+</div>

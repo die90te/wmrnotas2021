@@ -1,0 +1,115 @@
+<script type="text/javascript">
+	$(document).ready(function(){  
+  
+            $("#curso").val($("#tcurso").val()); 
+            $("#curso2s").val($("#tcurso").val()); 
+            $("#letra").val($("#tletra").val()); 
+            $("#letra2s").val($("#tletra").val()); 
+            $("#asignatura").val($("#tasignatura").val()); 
+            $("#asignatura2s").val($("#tasignatura").val()); 
+
+            $("#2s").click(function(){
+            	alert("Segundo Semestre DESHABILITADO");
+            })
+});
+</script>
+
+<div class="content_" id="content" style='text-aling: center;' >
+
+	<?php View::content(); ?>
+
+	
+
+	 
+	
+
+	
+<p><br></p>
+<table width="100%" border="0" align="center" style="text-align: center;">
+	<tr>
+		<td width="50%">1° Semestre</td>
+		<td width="50%">2° Semestre</td>
+	</tr>
+	<tr>
+		<td>
+			<div style="text-align: center; border: solid 1px;">	
+			<form action="http://localhost/wmr2019/default/public/livetable/notas.php" method="post" name="f1">
+			<p><br></p>
+			<select id="nota" name="nota">
+				<option value="">SELECCIONE NOTA</option>
+				<option value="">------</option>
+				<option value="n1">NOTA 1</option>
+				<option value="n2">NOTA 2</option>
+				<option value="n3">NOTA 3</option>
+				<option value="n4">NOTA 4</option>
+				<option value="n5">NOTA 5</option>
+				<option value="n6">NOTA 6</option>
+				<option value="n7">NOTA 7</option>
+				<option value="n8">NOTA 8</option>
+				<option value="n9">NOTA 9</option>
+				<option value="n10">NOTA 10</option>
+			</select>
+
+			<br>
+			<input readonly type="hidden" name="curso" id="curso"/>  
+			<input readonly type="hidden" name="letra" id="letra"/>  
+			<input readonly type="hidden" name="asignatura" id="asignatura"/>  
+
+			<p><input type="submit" value="1° Semestre"></p>		
+
+			</form>
+		</div>		 
+		</td>
+
+		<td>
+
+		<div style="text-align: center; border: solid 1px;">	
+			<form action="#" method="post" name="f1">
+			<p><br></p>
+			<select id="nota" name="nota">
+				<option value="">SELECCIONE NOTA</option>
+				<option value="">------</option>
+				<option value="n1">NOTA 1</option>
+				<option value="n2">NOTA 2</option>
+				<option value="n3">NOTA 3</option>
+				<option value="n4">NOTA 4</option>
+				<option value="n5">NOTA 5</option>
+				<option value="n6">NOTA 6</option>
+				<option value="n7">NOTA 7</option>
+				<option value="n8">NOTA 8</option>
+				<option value="n9">NOTA 9</option>
+				<option value="n10">NOTA 10</option>
+			</select>
+
+			<br>
+			<input readonly type="hidden" name="curso2s" id="curso2s"/>  
+			<input readonly type="hidden" name="letra2s" id="letra2s"/>  
+			<input readonly type="hidden" name="asignatura2s" id="asignatura2s"/>  
+
+			<p><input type="button" value="2° Semestre" id="2s"></p>		
+
+			</form>
+		</div>
+
+		</td>
+	</tr>
+</table>
+
+	
+
+
+
+	</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
